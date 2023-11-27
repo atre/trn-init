@@ -1,14 +1,51 @@
-import { Construct } from "constructs";
-import { App, TerraformStack } from "cdktf";
+import { App } from "cdktf";
+import { Init } from "./src/init";
 
-class MyStack extends TerraformStack {
-  constructor(scope: Construct, id: string) {
-    super(scope, id);
-
-    // define resources here
-  }
-}
+const config = {
+  initRepo: {
+    name: "trn-init",
+    visibility: "public",
+    hasProjects: true,
+    hasIssues: true,
+    collaborator: {
+      username: "dromix",
+      permission: "admin",
+    },
+  },
+  componentsRepo: {
+    name: "trn-components",
+    visibility: "public",
+    hasProjects: true,
+    hasIssues: true,
+    collaborator: {
+      username: "dromix",
+      permission: "admin",
+    },
+  },
+  azureRepo: {
+    name: "trn-azure",
+    visibility: "public",
+    hasProjects: true,
+    hasIssues: true,
+    collaborator: {
+      username: "dromix",
+      permission: "admin",
+    },
+  },
+  awsRepo: {
+    name: "trn-aws",
+    visibility: "public",
+    hasProjects: true,
+    hasIssues: true,
+    collaborator: {
+      username: "dromix",
+      permission: "admin",
+    },
+  },
+};
 
 const app = new App();
-new MyStack(app, "init");
+
+new Init(app, "init", config);
+
 app.synth();
